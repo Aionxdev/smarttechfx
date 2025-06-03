@@ -36,7 +36,8 @@ export const login = async (req, res) => {
     const cookieOptions = {
         httpOnly: true,
         secure: config.env === 'production',
-        sameSite: 'lax', // Or 'lax' if needed for cross-site scenarios (be careful)
+        sameSite: 'none', // Or 'lax' if needed for cross-site scenarios (be careful)
+        path: '/',
     };
 
     res.cookie(config.jwt.cookieName, accessToken, { ...cookieOptions, maxAge: 24 * 60 * 60 * 1000 }); // e.g., 1 day
